@@ -10,16 +10,22 @@ public class Grabber : MonoBehaviour
     public List<GameObject> grabbableItems;
     public bool grabbing;
     public GameObject grabbedObject;
-   // public collider grabCollider = Collider;
-    // Start is called before the first frame update
+    
+    private InputDevice RightXRController;
+    private InputDevice LeftXRController;
+    
+    private Vector3 controllerVelocity;
+    private Vector3 controllerAngularVelocity;
+     
     void Start()
     {
         watcher.triggerButtonPress.AddListener(onTriggerButtonEvent);
+        RightXRController = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+        LeftXRController = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
     }
     
     public void onTriggerButtonEvent(bool pressed)
     {
-        print("detected button press");
         if (pressed){
             isTryingToGrab = true;
             attemptToGrab();
@@ -31,14 +37,12 @@ public class Grabber : MonoBehaviour
     
     void OnTriggerEnter(Collider other) {
         if (other.transform.gameObject.layer == 6){
-            print("controller entered a grabbable collider");
             grabbableItems.Add(other.transform.gameObject);
         }
     }
     
     void OnTriggerExit(Collider other) {
         if (grabbableItems.Contains(other.transform.gameObject)){
-            print("COntroller exited a grabbable collider");
             grabbableItems.Remove(other.transform.gameObject);
         }
     }
@@ -58,13 +62,20 @@ public class Grabber : MonoBehaviour
         }
     }
     
+    void getControllerVelocities(){
+        RightXRController.TryGetFeatureValue(CommonUsages.deviceVelocity, out controllerVelocity);
+        RightXRController.TryGetFeatureValue(CommonUsages.deviceAngularVelocity, out controllerAngularVelocity);
+    }
+    
     void stopGrab(){
         if (grabbing == true){
             {
                 grabbing = false;
                 print("Let go of this object:" +  grabbedObject.name);
                 var g = grabbedObject.GetComponent<GrabbableScript>();
-                g.stopGrabbing(gameObject);
+                
+                getControllerVelocities();
+                g.stopGrabbing(gameObject, controllerVelocity, controllerAngularVelocity);
                 grabbedObject = null;
             }
         }
