@@ -1093,13 +1093,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75ef3d3a90250f940860f4733f93ce6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  watcher: {fileID: 1725982595}
   mode: 1
+  filterStrength: 0
+  previousFilterStrength: 0
   showDifference: 0
+  lerping: 0
+  lerpDuration: 2
+  startValue: 0
+  lerpTarget: 1
 --- !u!1 &1004288906
 GameObject:
   m_ObjectHideFlags: 0
