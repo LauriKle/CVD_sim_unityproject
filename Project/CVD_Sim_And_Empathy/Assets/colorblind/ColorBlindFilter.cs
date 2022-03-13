@@ -2,6 +2,7 @@
 // www.alanzucconi.com
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public enum ColorBlindMode
 {
@@ -19,7 +20,8 @@ public enum ColorBlindMode
 [ExecuteInEditMode]
 public class ColorBlindFilter : MonoBehaviour
 {
-    public PrimaryButtonWatcher watcher;
+    public InputActionReference toggleReference = null;
+    //public PrimaryButtonWatcher watcher;
     public ColorBlindMode mode = ColorBlindMode.Normal;
     private ColorBlindMode previousMode = ColorBlindMode.Normal;
     public float filterStrength = 0f;
@@ -47,9 +49,13 @@ public class ColorBlindFilter : MonoBehaviour
     };
     
     void Start(){
-        watcher.primaryButtonPress.AddListener(onPrimaryButtonEvent);
-       // float lerpTarget = 1f;
-        //StartCoroutine(Lerp(lerpTarget));
+      //  watcher.primaryButtonPress.AddListener(onPrimaryButtonEvent);
+     //   StartCoroutine(Lerp(lerpTarget));
+        toggleReference.action.started  += ToggleColors;
+    }
+    
+    private void OnDestroy(){
+        toggleReference.action.started  -= ToggleColors;
     }
     
     void Awake()
@@ -58,9 +64,25 @@ public class ColorBlindFilter : MonoBehaviour
         material.SetColor("_R", RGB[0, 0]);
         material.SetColor("_G", RGB[0, 1]);
         material.SetColor("_B", RGB[0, 2]);
+        
     }
     
-    public void onPrimaryButtonEvent(bool pressed){
+    public void ToggleColors(InputAction.CallbackContext context){
+        if (lerping == false){
+            print("juu painoit nappia, lerptarget on " + lerpTarget);
+            StartCoroutine(Lerp(lerpTarget));
+            if (lerpTarget == 0f){
+                lerpTarget = 1f;
+            }else if (lerpTarget == 1f){
+                lerpTarget = 0f;
+            }else{
+                print("something went wrong????");
+            }
+        }
+    }
+    
+    /*
+    public void toggleButtonEvent(bool pressed){
         if (pressed == true && lerping == false){
             print("juu painoit nappia, lerptarget on " + lerpTarget);
             StartCoroutine(Lerp(lerpTarget));
@@ -73,6 +95,7 @@ public class ColorBlindFilter : MonoBehaviour
             }
         }
     }
+    */
     
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {

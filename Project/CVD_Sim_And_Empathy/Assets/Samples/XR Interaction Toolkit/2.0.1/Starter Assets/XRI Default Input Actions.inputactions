@@ -1073,6 +1073,45 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Custom",
+            "id": "ea183763-fda0-4fe3-b7b6-31f1950848b5",
+            "actions": [
+                {
+                    "name": "ToggleColors",
+                    "type": "Button",
+                    "id": "d2e68969-4e95-408e-b456-6c5d68aef569",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4f4b99c5-394f-4e14-96dd-c03f9ff0e5a9",
+                    "path": "<ViveController>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleColors",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98f10feb-fe60-4686-a4bd-5a7cb0499cba",
+                    "path": "<OculusTouchController>/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleColors",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
