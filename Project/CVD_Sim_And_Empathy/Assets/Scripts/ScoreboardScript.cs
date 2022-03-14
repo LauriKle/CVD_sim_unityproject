@@ -30,11 +30,14 @@ public class ScoreboardScript : MonoBehaviour
     }
     
     public void incrementCorrect(int amount){
-        
+        correct += amount;
+        updateCounters();
     }
     
     void updateCounters(){
         TextMesh missedTextObject = missedCounterObject.GetComponent<TextMesh>();
         missedTextObject.text = missed.ToString();
+        TextMesh correctTextObject = correctCounterObject.GetComponent<TextMesh>();
+        correctTextObject.text = correct.ToString();
     }
 }
