@@ -13,8 +13,7 @@ public class TrashCanScript : MonoBehaviour
 
     private void Start() {
 		wrongName = wrongObject.name;
-		correctName = correctObject.name; 
-		Debug.Log(wrongName + " " + correctName);
+		correctName = correctObject.name;
 	}
     void OnCollisionEnter(Collision other) {
 		//Debug.Log(other.gameObject.name.Replace("(Clone)", "") + correctObject.name);
@@ -28,7 +27,7 @@ public class TrashCanScript : MonoBehaviour
 			else if (correctName == nameOther) {
 				scoreboard.GetComponent<ScoreboardScript>().incrementCorrect(1);
 			}
-			Destroy(other.transform.gameObject);
+			Destroy(other.gameObject);
 		}
 	}
 }
