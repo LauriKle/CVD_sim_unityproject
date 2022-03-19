@@ -1849,7 +1849,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3dbee63b6bcd5194ea741518bdca1bfb, type: 2}
+  - {fileID: 2100000, guid: 3d8509fe064933049913b1e9ebc61ed3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1921,8 +1921,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c432c844c500e45843e3b05a7ecac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scroll: {x: 0.335, y: 0}
   conveyorSpeed: 80
   conveyorDirection: {x: 1, y: 0, z: 0}
+  itemsToConvey: []
 --- !u!1001 &6348264128386583518
 PrefabInstance:
   m_ObjectHideFlags: 0
