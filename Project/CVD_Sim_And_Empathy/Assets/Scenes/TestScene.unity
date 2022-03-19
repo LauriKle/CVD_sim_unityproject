@@ -1982,8 +1982,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c432c844c500e45843e3b05a7ecac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scroll: {x: 2, y: 0}
   conveyorSpeed: 80
   conveyorDirection: {x: 1, y: 0, z: 0}
+  itemsToConvey: []
 --- !u!4 &2131248381 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7342693807572203027, guid: 912975d3d349d0f4e9ba04ea4e0eec79,
