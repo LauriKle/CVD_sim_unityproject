@@ -1381,6 +1381,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin WIth XRI
       objectReference: {fileID: 0}
+    - target: {fileID: 8046613763791633744, guid: c88c4b41bcf413c44b693c6833c0fcc1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c88c4b41bcf413c44b693c6833c0fcc1, type: 3}
 --- !u!1001 &3652351789979211798
