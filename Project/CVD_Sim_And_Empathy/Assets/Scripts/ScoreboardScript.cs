@@ -10,12 +10,17 @@ public class ScoreboardScript : MonoBehaviour
     public int missed;
     public int correct;
     
+    public AudioClip correctAudioClip;
+    public AudioClip incorrectAudioClip;
+    
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         missed = 0;
         correct = 0;
         updateCounters();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,11 +32,13 @@ public class ScoreboardScript : MonoBehaviour
     public void incrementMissed(int amount){
         missed += amount;
         updateCounters();
+        audioSource.PlayOneShot(incorrectAudioClip);
     }
     
     public void incrementCorrect(int amount){
         correct += amount;
         updateCounters();
+        audioSource.PlayOneShot(correctAudioClip);
     }
     
     void updateCounters(){

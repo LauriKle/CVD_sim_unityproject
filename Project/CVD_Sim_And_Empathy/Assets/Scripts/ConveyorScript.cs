@@ -12,22 +12,31 @@ public class ConveyorScript : MonoBehaviour
     
     public List<GameObject> itemsToConvey;
     
+    public bool isRunning;
+    
+
     
    // private Vector3 direction;
     
     void Update () {
-        //Scroll texture
-        offset +=  scroll * Time.deltaTime;
-        GetComponent<Renderer>().material.SetTextureOffset ("_MainTex", offset);
-        
-        //Move items on the conveyor
-        int l = itemsToConvey.Count;
-        if (l > 0){
-            foreach (GameObject item in itemsToConvey){
-                Rigidbody rigidbody = item.GetComponent<Rigidbody>();
-                rigidbody.velocity = conveyorSpeed * conveyorDirection * Time.fixedDeltaTime ;
+        if (isRunning == true){
+            //Scroll texture
+            offset +=  scroll * Time.deltaTime;
+            GetComponent<Renderer>().material.SetTextureOffset ("_MainTex", offset);
+            
+            //Move items on the conveyor
+            int l = itemsToConvey.Count;
+            if (l > 0){
+                foreach (GameObject item in itemsToConvey){
+                    Rigidbody rigidbody = item.GetComponent<Rigidbody>();
+                    rigidbody.velocity = conveyorSpeed * conveyorDirection * Time.fixedDeltaTime ;
+                }
             }
         }
+    }
+    
+    public void switchOnOrOff(){
+        isRunning = !isRunning;
     }
 
 

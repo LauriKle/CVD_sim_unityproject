@@ -8,6 +8,7 @@ public class CubeDispenserScript : MonoBehaviour
     private float timerCount;
     
     public List<GameObject> itemsToDispense;
+    public bool isRunning;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,23 +25,28 @@ public class CubeDispenserScript : MonoBehaviour
         }
     }
     
+    public void switchOnOrOff(){
+        isRunning = !isRunning;
+    }
+    
     void timerEnd(){
         timerCount = dispenseInterval;
         dispenseCube();
     }
     
     void dispenseCube(){
-        if (itemsToDispense.Count > 1){
-            int itemListIndex = Random.Range(0, (itemsToDispense.Count));
-            if (itemsToDispense[itemListIndex] != null){
-                GameObject clone = Instantiate(itemsToDispense[itemListIndex], transform.position, Quaternion.identity) as GameObject;
+        if (isRunning == true){
+            if (itemsToDispense.Count > 1){
+                int itemListIndex = Random.Range(0, (itemsToDispense.Count));
+                if (itemsToDispense[itemListIndex] != null){
+                    GameObject clone = Instantiate(itemsToDispense[itemListIndex], transform.position, Quaternion.identity) as GameObject;
+                }
+                else{
+                    print("An item in the list was null!");
+                }
             }
-            else{
-                print("An item in the list was null!");
-            }
+            else
+                print("Item list is empty");
         }
-        else
-            print("Item list is empty");
-        
     }
 }
