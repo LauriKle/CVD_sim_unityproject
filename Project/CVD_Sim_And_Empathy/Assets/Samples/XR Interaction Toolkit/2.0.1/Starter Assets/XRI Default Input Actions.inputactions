@@ -1092,7 +1092,7 @@
                 {
                     "name": "",
                     "id": "4f4b99c5-394f-4e14-96dd-c03f9ff0e5a9",
-                    "path": "<ViveController>/select",
+                    "path": "<ViveController>/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
