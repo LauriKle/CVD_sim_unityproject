@@ -14,7 +14,7 @@ public class TrashCanScript : MonoBehaviour
 		correctName = correctObject.name;
 	}
     void OnCollisionEnter(Collision other) {
-		//Debug.Log(other.gameObject.name.Replace("(Clone)", "") + correctObject.name);
+		Debug.Log(other.gameObject.name.Replace("(Clone)", " ") + correctObject.name);
 
 		if (other.gameObject.layer == 6){
 			string nameOther = other.gameObject.name.Replace("(Clone)", "");

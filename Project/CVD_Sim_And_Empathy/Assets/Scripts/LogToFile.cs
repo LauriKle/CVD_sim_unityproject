@@ -6,31 +6,43 @@ using System.IO;
 public class LogToFile : MonoBehaviour
 {
     private string filename;
-    TextWriter tw;
+    private TextWriter tw;
+    public bool isOn = false;
+    private bool logEnabled = false;
+    private long startTime;
 
-   
-    void Start()
+    void OnEnable()
     {
-        filename += "./Logs/" + System.DateTime.Now + ".txt";
+        filename += "./DataLogs/" + System.DateTime.Now + ".txt";
+        if (isOn)
+        {
+            Application.logMessageReceived += Log;
+            startTime = GetTimeInMillis();
+            Debug.Log("Log Enable");
+            logEnabled = true;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (logEnabled)
+        {
+            Debug.Log("Log Disable");
+            Application.logMessageReceived -= Log;
+            logEnabled = false;
+        }
+    }
+
+    public void Log(string logString, string stackTrace, LogType type)
+    {
         tw = new StreamWriter(filename, true);
-        Debug.Log("Log opened " + System.DateTime.Now);
-        tw.WriteLine("Hello");
-    }
-
-    void Update()
-    {
-        
-    }
-
-    private void OnApplicationQuit()
-    {
-        tw.WriteLine();
+        tw.WriteLine((GetTimeInMillis() - startTime).ToString() + "," + logString);
         tw.Close();
-        Debug.Log("Log Closed");
     }
- 
-    void WriteToLog(string str)
+
+    public long GetTimeInMillis()
     {
-        tw.WriteLine(str);
+        System.DateTime now = System.DateTime.Now;
+        return ((((now.Hour * 60) + now.Minute) * 60) + now.Second ) * 1000 + now.Millisecond;
     }
 }
