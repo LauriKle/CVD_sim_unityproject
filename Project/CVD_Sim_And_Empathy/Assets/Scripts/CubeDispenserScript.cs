@@ -6,47 +6,55 @@ public class CubeDispenserScript : MonoBehaviour
 {
     public float dispenseInterval = 2.0f;
     private float timerCount;
-    
-    public List<GameObject> itemsToDispense;
+    public Vector3 offset;
+    public GameObject[] items;
+    private int i;
+
+    private int[] itemList = new int[] {
+        0b001,
+        0b010,
+        0b100,
+        0b111
+    };
+
     public bool isRunning;
-    // Start is called before the first frame update
+
     void Start()
     {
+        i = 0;
         timerCount = dispenseInterval;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        timerCount -= Time.deltaTime;
-        
-        if (timerCount <= 0){
-            timerEnd();
+        if (isRunning)
+        {
+            timerCount -= Time.deltaTime;
+            if (timerCount <= 0)
+            {
+                timerCount = dispenseInterval;
+                dispenseCube();
+            }
         }
     }
     
     public void switchOnOrOff(){
         isRunning = !isRunning;
     }
-    
-    void timerEnd(){
-        timerCount = dispenseInterval;
-        dispenseCube();
-    }
-    
+        
     void dispenseCube(){
-        if (isRunning == true){
-            if (itemsToDispense.Count > 1){
-                int itemListIndex = Random.Range(0, (itemsToDispense.Count));
-                if (itemsToDispense[itemListIndex] != null){
-                    GameObject clone = Instantiate(itemsToDispense[itemListIndex], transform.position, Quaternion.identity) as GameObject;
-                }
-                else{
-                    print("An item in the list was null!");
+        GameObject clone;
+        if (isRunning == true) {
+            for (int n = 0; n < 3; ++n)
+            {
+                if ((itemList[i] & (1 << n)) > 0)
+                {
+                    clone = Instantiate(items[n], transform.position + offset * n, Quaternion.identity) as GameObject;
                 }
             }
-            else
-                print("Item list is empty");
+            i = (i + 1) % itemList.Length;             
+                
+           
         }
     }
 }
