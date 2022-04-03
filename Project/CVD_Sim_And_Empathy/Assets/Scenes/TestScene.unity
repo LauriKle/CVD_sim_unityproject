@@ -2696,9 +2696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   belt: {fileID: 2001722753}
-  itemDispensers:
-  - {fileID: 1398014018}
-  - {fileID: 0}
+  itemDispenser: {fileID: 1398014018}
 --- !u!1 &1398014018
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,12 +2727,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dispenseInterval: 2
-  offset: {x: 0.2, y: 0, z: 0}
+  offset:
+  - {x: -0.1, y: 0, z: -0.1}
+  - {x: 0.1, y: 0, z: -0.2}
+  - {x: -0.1, y: 0, z: 0.2}
+  - {x: 0.1, y: 0, z: 0.1}
   items:
   - {fileID: 3713601679565903975, guid: 68439c39d7ae3cd45b0aeab9032ba9d8, type: 3}
   - {fileID: 4048733453711077221, guid: fc17ecca3d32d7b41bfe09d67dcc8dbc, type: 3}
   - {fileID: 3536439691100969846, guid: f7cb9a00e9eed234ab654d02a59cccbd, type: 3}
-  isRunning: 1
+  state: 1
 --- !u!4 &1398014020
 Transform:
   m_ObjectHideFlags: 0
@@ -2742,13 +2744,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398014018}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -0.00345, y: 0.01407, z: 0}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1716633869}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
 --- !u!1001 &1409625550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3009,7 +3011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3e031175667bb4d20991d949e62ea836, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.052
+      value: -0.031
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3e031175667bb4d20991d949e62ea836, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3041,11 +3043,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3e031175667bb4d20991d949e62ea836, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.3747
+      value: 1.3418262
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3e031175667bb4d20991d949e62ea836, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.2823
+      value: 1.7958612
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 3e031175667bb4d20991d949e62ea836, type: 3}
       propertyPath: m_Materials.Array.data[0]

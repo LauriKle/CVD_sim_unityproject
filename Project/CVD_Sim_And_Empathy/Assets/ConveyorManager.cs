@@ -5,23 +5,14 @@ using UnityEngine;
 public class ConveyorManager : MonoBehaviour
 {
     public GameObject belt;
-    public List<GameObject> itemDispensers;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject itemDispenser;
     
     public void switchOnOrOff(){
-        belt.GetComponent<ConveyorScript>().switchOnOrOff();
-        foreach(GameObject dispenser in itemDispensers){
-            dispenser.GetComponent<CubeDispenserScript>().switchOnOrOff();
+        if (itemDispenser.GetComponent<CubeDispenserScript>().state == CubeDispenserScript.States.IDLE)
+        {
+            itemDispenser.GetComponent<CubeDispenserScript>().nextState();
+            belt.GetComponent<ConveyorScript>().switchOnOrOff();
         }
+        
     }
 }

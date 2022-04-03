@@ -22,12 +22,6 @@ public class ScoreboardScript : MonoBehaviour
         updateCounters();
         audioSource = GetComponent<AudioSource>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
     public void incrementMissed(int amount){
         missed += amount;
