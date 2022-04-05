@@ -26,11 +26,12 @@ public class CubeDispenserScript : MonoBehaviour
     public float dispenseInterval = 2.0f;
     public Vector3[] offset;
     public GameObject[] items;
-    private States state = States.IDLE;
+    // Testauksen takia public, vaiha private kun testaus on tehty
+    public States state = States.IDLE;
 
     void Start()
     {
-        state = States.IDLE;
+        //state = States.IDLE;
         i = 0;
         timerCount = dispenseInterval;
     }
