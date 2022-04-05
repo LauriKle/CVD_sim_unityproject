@@ -7,33 +7,15 @@ public class LogToFile : MonoBehaviour
 {
     private string filename;
     private TextWriter tw;
-    public bool isOn = false;
-    private bool logEnabled = false;
     private long startTime;
 
     void OnEnable()
     {
-        filename += "./DataLogs/" + System.DateTime.Now.ToString("dddd dd MMMM yyyy HH mm ss") + ".txt";
-        if (isOn)
-        {
-            Application.logMessageReceived += Log;
-            startTime = GetTimeInMillis();
-            Debug.Log("Log Enable");
-            logEnabled = true;
-        }
+        filename += "./DataLogs/" + System.DateTime.Now.ToString("dddd dd MMMM yyyy HH mm ss") + ".txt";     
+        startTime = GetTimeInMillis();    
     }
 
-    void OnDisable()
-    {
-        if (logEnabled)
-        {
-            Debug.Log("Log Disable");
-            Application.logMessageReceived -= Log;
-            logEnabled = false;
-        }
-    }
-
-    public void Log(string logString, string stackTrace, LogType type)
+    public void DataLog(string logString)
     {
         tw = new StreamWriter(filename, true);
         tw.WriteLine((GetTimeInMillis() - startTime).ToString() + "," + logString);

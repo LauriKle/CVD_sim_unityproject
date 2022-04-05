@@ -16,7 +16,7 @@ public class PhysicalButtonScript : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         if (other.transform.gameObject.tag == "Player Hand Controller"){
             audioSource.PlayOneShot(buttonPressAudioClip);
-            manager.GetComponent<ConveyorManager>().switchOnOrOff();
+            manager.GetComponent<ConveyorManager>().buttonPressed();
         }
     }
 }

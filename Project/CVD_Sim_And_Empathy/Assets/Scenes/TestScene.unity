@@ -992,6 +992,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7187610702835545465, guid: 3963101490ac98b49be7d0df842ff75e,
         type: 3}
+      propertyPath: dataLogger
+      value: 
+      objectReference: {fileID: 1780072275366328268}
+    - target: {fileID: 7187610702835545465, guid: 3963101490ac98b49be7d0df842ff75e,
+        type: 3}
       propertyPath: scoreboard
       value: 
       objectReference: {fileID: 239677407}
@@ -2701,6 +2706,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   belt: {fileID: 2001722753}
   itemDispenser: {fileID: 1398014018}
+  camera: {fileID: 448668389}
+  dispenseInterval: 2
+  state: 0
 --- !u!1 &1398014018
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,17 +2739,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 448668389}
-  dispenseInterval: 2
   offset:
-  - {x: -0.1, y: 0, z: -0.1}
   - {x: 0.1, y: 0, z: -0.2}
-  - {x: -0.1, y: 0, z: 0.2}
+  - {x: -0.1, y: 0, z: -0.1}
   - {x: 0.1, y: 0, z: 0.1}
+  - {x: -0.1, y: 0, z: 0.2}
   items:
   - {fileID: 3713601679565903975, guid: 68439c39d7ae3cd45b0aeab9032ba9d8, type: 3}
   - {fileID: 4048733453711077221, guid: fc17ecca3d32d7b41bfe09d67dcc8dbc, type: 3}
   - {fileID: 3536439691100969846, guid: f7cb9a00e9eed234ab654d02a59cccbd, type: 3}
-  state: 1
 --- !u!4 &1398014020
 Transform:
   m_ObjectHideFlags: 0
@@ -3967,6 +3973,10 @@ PrefabInstance:
       value: 0.01113
       objectReference: {fileID: 0}
     - target: {fileID: 1609724885, guid: 5408da5a60751d44c9cf87684f6efcab, type: 3}
+      propertyPath: dataLogger
+      value: 
+      objectReference: {fileID: 1780072275366328268}
+    - target: {fileID: 1609724885, guid: 5408da5a60751d44c9cf87684f6efcab, type: 3}
       propertyPath: scoreboard
       value: 
       objectReference: {fileID: 239677407}
@@ -4662,6 +4672,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1325586618}
     m_Modifications:
     - target: {fileID: 1918007128, guid: c5e846c185e5db844abc12d2fd0d3714, type: 3}
+      propertyPath: dataLogger
+      value: 
+      objectReference: {fileID: 1780072275366328268}
+    - target: {fileID: 1918007128, guid: c5e846c185e5db844abc12d2fd0d3714, type: 3}
       propertyPath: scoreboard
       value: 
       objectReference: {fileID: 239677407}
@@ -5065,3 +5079,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74cb7b301603ad14db5cc38799b76654, type: 3}
+--- !u!1 &1780072275366328268 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1780072274998921581, guid: 74cb7b301603ad14db5cc38799b76654,
+    type: 3}
+  m_PrefabInstance: {fileID: 1780072275366328267}
+  m_PrefabAsset: {fileID: 0}

@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class CubeDispenserScript : MonoBehaviour
 {
-    private float timerCount;
     private int i;
-    private readonly int[,] itemList = new int[5, 4]
+    private readonly int[,] itemList = new int[8, 4]
     {
         {0, 0, 0, 0},
         {1, 1, 1, 1},
         {2, 2, 2, 2},
         {3, 3, 3, 3},
+        {0, 0, 0, 0},
+        {0, 0, 0, 0},
+        {0, 0, 0, 0},
         {0, 0, 0, 0}
     };
+
     private int boxID;
+
     public enum States
     {
         IDLE = 0,
@@ -23,58 +27,18 @@ public class CubeDispenserScript : MonoBehaviour
     }
 
     public new GameObject camera;
-    public float dispenseInterval = 2.0f;
+    
     public Vector3[] offset;
     public GameObject[] items;
-    public States state = States.IDLE;
+    
 
     void Start()
-    {
-        state = States.IDLE;
+    {    
         i = 0;
-        timerCount = dispenseInterval;
         boxID = 0;
     }
-
-    void Update()
-    {
-        switch (state)
-        {
-            case States.IDLE:
-                break;
-            case States.NORMAL:
-                timerCount -= Time.deltaTime;
-                break;
-            case States.CVD:
-                timerCount -= Time.deltaTime;
-                break;   
-        }
-        if (timerCount <= 0)
-        {
-            timerCount = dispenseInterval;
-            dispenseCube();
-        }
-    }
-    
-    public void nextState() 
-    {
-        switch (state)
-        {
-            case States.IDLE:
-                state = States.NORMAL;
-                break;
-            case States.NORMAL:
-                camera.GetComponent<ColorBlindFilter>().ToggleColors();
-                state = States.CVD;
-                break;
-            case States.CVD:
-                camera.GetComponent<ColorBlindFilter>().ToggleColors();
-                state = States.IDLE;
-                break;
-        }
-    }
-        
-    private void dispenseCube()
+     
+    public bool dispenseCube()
     {
         GameObject clone;
 
@@ -89,8 +53,9 @@ public class CubeDispenserScript : MonoBehaviour
         i = (i + 1) % itemList.GetLength(0);             
         if (i == 0)
         {
-            nextState();
             boxID = 0;
+            return true;
         }
+        return false;
     }
 }
