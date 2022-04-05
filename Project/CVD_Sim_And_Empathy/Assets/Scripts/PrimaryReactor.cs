@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class PrimaryReactor : MonoBehaviour
 {
+    private Quaternion offRotation;
+    private Quaternion onRotation;
+    private Coroutine rotator;
+
     public PrimaryButtonWatcher watcher;
     public bool IsPressed = false; // used to display button state in the Unity Inspector window
     public Vector3 rotationAngle = new Vector3(45, 45, 45);
     public float rotationDuration = 0.25f; // seconds
-    private Quaternion offRotation;
-    private Quaternion onRotation;
-    private Coroutine rotator;
+    
 
     void Start()
     {

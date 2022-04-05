@@ -22,6 +22,7 @@ public class CubeDispenserScript : MonoBehaviour
         CVD = 2
     }
 
+    public new GameObject camera;
     public float dispenseInterval = 2.0f;
     public Vector3[] offset;
     public GameObject[] items;
@@ -55,24 +56,26 @@ public class CubeDispenserScript : MonoBehaviour
         }
     }
     
-    public void nextState(){
+    public void nextState() 
+    {
         switch (state)
         {
             case States.IDLE:
                 state = States.NORMAL;
                 break;
             case States.NORMAL:
-                // lerp
+                camera.GetComponent<ColorBlindFilter>().ToggleColors();
                 state = States.CVD;
                 break;
             case States.CVD:
-                // lerp off
+                camera.GetComponent<ColorBlindFilter>().ToggleColors();
                 state = States.IDLE;
                 break;
         }
     }
         
-    void dispenseCube(){
+    private void dispenseCube()
+    {
         GameObject clone;
         
         for (int n = 0; n < 4; ++n)

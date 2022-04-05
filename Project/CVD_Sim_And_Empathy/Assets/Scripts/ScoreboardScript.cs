@@ -7,8 +7,8 @@ public class ScoreboardScript : MonoBehaviour
     public GameObject missedCounterObject;
     public GameObject correctCounterObject;
     
-    public int missed;
-    public int correct;
+    private int missed;
+    private int correct;
     
     public AudioClip correctAudioClip;
     public AudioClip incorrectAudioClip;

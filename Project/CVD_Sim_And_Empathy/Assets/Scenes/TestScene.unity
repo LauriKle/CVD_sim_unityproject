@@ -593,8 +593,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missedCounterObject: {fileID: 110257828}
   correctCounterObject: {fileID: 949135364}
-  missed: 0
-  correct: 0
   correctAudioClip: {fileID: 8300000, guid: 1500bb4d477e21d4caa7a425827fa38f, type: 3}
   incorrectAudioClip: {fileID: 8300000, guid: 6318953951961d14b98cdd425eebf4d9, type: 3}
 --- !u!82 &239677410
@@ -797,6 +795,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4b81ded0defafc4ead1959cdff5539f, type: 3}
+--- !u!1 &448668389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2056664554202421839, guid: c88c4b41bcf413c44b693c6833c0fcc1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1455676829}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &448937517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2726,6 +2730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3919f9c56660acb4092118d35df4702b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 448668389}
   dispenseInterval: 2
   offset:
   - {x: -0.1, y: 0, z: -0.1}

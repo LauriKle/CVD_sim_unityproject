@@ -19,15 +19,18 @@ public class ConveyorScript : MonoBehaviour
    // private Vector3 direction;
     
     void Update () {
-        if (isRunning == true){
+        if (isRunning == true)
+        {
             //Scroll texture
             offset +=  scroll * Time.deltaTime;
-            GetComponent<Renderer>().material.SetTextureOffset ("_MainTex", offset);
+            GetComponent<Renderer>().material.SetTextureOffset("_MainTex", offset);
             
             //Move items on the conveyor
             int l = itemsToConvey.Count;
-            if (l > 0){
-                foreach (GameObject item in itemsToConvey){
+            if (l > 0)
+            {
+                foreach (GameObject item in itemsToConvey)
+                {
                     Rigidbody rigidbody = item.GetComponent<Rigidbody>();
                     rigidbody.velocity = conveyorSpeed * conveyorDirection * Time.fixedDeltaTime ;
                 }

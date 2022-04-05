@@ -7,7 +7,8 @@ public class ConveyorManager : MonoBehaviour
     public GameObject belt;
     public GameObject itemDispenser;
     
-    public void switchOnOrOff(){
+    public void switchOnOrOff()
+    {
         if (itemDispenser.GetComponent<CubeDispenserScript>().state == CubeDispenserScript.States.IDLE)
         {
             itemDispenser.GetComponent<CubeDispenserScript>().nextState();
