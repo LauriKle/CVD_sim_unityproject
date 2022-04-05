@@ -13,7 +13,7 @@ public class LogToFile : MonoBehaviour
 
     void OnEnable()
     {
-        filename += "./DataLogs/" + System.DateTime.Now + ".txt";
+        filename += "./DataLogs/" + System.DateTime.Now.ToString("dddd dd MMMM yyyy HH mm ss") + ".txt";
         if (isOn)
         {
             Application.logMessageReceived += Log;
