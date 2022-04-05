@@ -14,7 +14,7 @@ public class CubeDispenserScript : MonoBehaviour
         {3, 3, 3, 3},
         {0, 0, 0, 0}
     };
-
+    private int boxID;
     public enum States
     {
         IDLE = 0,
@@ -26,14 +26,14 @@ public class CubeDispenserScript : MonoBehaviour
     public float dispenseInterval = 2.0f;
     public Vector3[] offset;
     public GameObject[] items;
-    // Testauksen takia public, vaiha private kun testaus on tehty
     public States state = States.IDLE;
 
     void Start()
     {
-        //state = States.IDLE;
+        state = States.IDLE;
         i = 0;
         timerCount = dispenseInterval;
+        boxID = 0;
     }
 
     void Update()
@@ -77,18 +77,20 @@ public class CubeDispenserScript : MonoBehaviour
     private void dispenseCube()
     {
         GameObject clone;
-        
+
         for (int n = 0; n < 4; ++n)
         {
             if (itemList[i, n] > 0)
             {
                 clone = Instantiate(items[itemList[i, n] - 1], transform.position + offset[n], Quaternion.identity) as GameObject;
+                clone.name = clone.name + (++boxID);
             }
         }
         i = (i + 1) % itemList.GetLength(0);             
         if (i == 0)
         {
             nextState();
+            boxID = 0;
         }
     }
 }

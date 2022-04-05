@@ -14,11 +14,12 @@ public class TrashCanScript : MonoBehaviour
 		correctName = correctObject.name;
 	}
     void OnCollisionEnter(Collision other) {
-		Debug.Log(other.gameObject.name.Replace("(Clone)", " ") + correctObject.name);
 
 		if (other.gameObject.layer == 6){
-			string nameOther = other.gameObject.name.Replace("(Clone)", "");
-		
+			string[] split = other.gameObject.name.Replace("(Clone)", " ").Split(' ');
+			string nameOther = split[0];
+			string id = split[1];
+
 			if (correctName == nameOther) {
 				scoreboard.GetComponent<ScoreboardScript>().incrementCorrect(1);
 			}
