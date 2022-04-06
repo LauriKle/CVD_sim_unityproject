@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CubeDispenserScript : MonoBehaviour
 {
-    private int i;
+    private int i = 0;
+    private int boxID = 0;
     private readonly int[,] itemList = new int[8, 4]
     {
         {0, 0, 0, 0},
@@ -17,8 +18,6 @@ public class CubeDispenserScript : MonoBehaviour
         {0, 0, 0, 0}
     };
 
-    private int boxID;
-
     public enum States
     {
         IDLE = 0,
@@ -26,18 +25,9 @@ public class CubeDispenserScript : MonoBehaviour
         CVD = 2
     }
 
-    public new GameObject camera;
-    
     public Vector3[] offset;
     public GameObject[] items;
-    
 
-    void Start()
-    {    
-        i = 0;
-        boxID = 0;
-    }
-     
     public bool dispenseCube()
     {
         GameObject clone;
@@ -50,12 +40,7 @@ public class CubeDispenserScript : MonoBehaviour
                 clone.name = clone.name + (++boxID);
             }
         }
-        i = (i + 1) % itemList.GetLength(0);             
-        if (i == 0)
-        {
-            boxID = 0;
-            return true;
-        }
-        return false;
+        i = (i + 1) % itemList.GetLength(0);
+        return i == 0;
     }
 }

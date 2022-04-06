@@ -12,6 +12,7 @@ public class TrashCanScript : MonoBehaviour
 	public GameObject correctObject;
 	public GameObject dataLogger;
 
+
     private void Start() {
 		correctName = correctObject.name;
 	}

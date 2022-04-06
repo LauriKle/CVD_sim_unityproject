@@ -18,23 +18,20 @@ public enum ColorBlindMode
     Achromatomaly = 8
 }
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class ColorBlindFilter : MonoBehaviour
 {
     private Material material;
-    
-    public ColorBlindMode mode = ColorBlindMode.Normal;
     private ColorBlindMode previousMode = ColorBlindMode.Normal;
+    private float filterStrength = 0f;
+    private float previousFilterStrength = 0f;
+    private bool lerping = false;
+    private float lerpTarget = 1f;
 
-    public float filterStrength = 0f;
-    public float previousFilterStrength = 0f;
+    public ColorBlindMode mode = ColorBlindMode.Normal;
     public bool showDifference = false;
-    public bool lerping = false;
-    // public PrimaryButtonWatcher watcher;
-    // public InputActionReference toggleReference = null;
-    public float lerpDuration = 10; 
-    public float startValue = 0; 
-    public float lerpTarget = 1f;
+    public float lerpDuration = 1; 
+    
 
     private static Color[,] RGB =
     {
@@ -48,19 +45,8 @@ public class ColorBlindFilter : MonoBehaviour
         { new Color(.299f, .587f, .114f), new Color(.299f, .587f, .114f), new Color(.299f, .587f, .114f)  },    // Achromatopsia
         { new Color(.618f, .32f, .062f), new Color(.163f, .775f, .062f), new Color(.163f, .320f, .516f)  }      // Achromatomaly
     };
-    
-    void Start()
-    {
-        // watcher.primaryButtonPress.AddListener(onPrimaryButtonEvent);
-        // StartCoroutine(Lerp(lerpTarget));
-        // toggleReference.action.started  += ToggleColors;
-    }
-    
-    private void OnDestroy(){
-        //toggleReference.action.started  -= ToggleColors;
-    }
-    
-    void Awake()
+
+	void Awake()
     {
         material = new Material(Shader.Find("Hidden/ChannelMixer"));
         material.SetColor("_R", RGB[0, 0]);
@@ -73,34 +59,11 @@ public class ColorBlindFilter : MonoBehaviour
     {
         if (lerping == false)
         {
-            // print("juu painoit nappia, lerptarget on " + lerpTarget);
             StartCoroutine(Lerp(lerpTarget));
-            if (lerpTarget == 0f)
-            {
-                lerpTarget = 1f;
-            }
-            else if (lerpTarget == 1f)
-            {
-                lerpTarget = 0f;
-            }
+            lerpTarget = (lerpTarget == 0f ? 1f : 0f);
         }
     }
     
-    /*
-    public void toggleButtonEvent(bool pressed){
-        if (pressed == true && lerping == false){
-            print("juu painoit nappia, lerptarget on " + lerpTarget);
-            StartCoroutine(Lerp(lerpTarget));
-            if (lerpTarget == 0f){
-                lerpTarget = 1f;
-            }else if (lerpTarget == 1f){
-                lerpTarget = 0f;
-            }else{
-                print("something went wrong????");
-            }
-        }
-    }
-    */
     
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
