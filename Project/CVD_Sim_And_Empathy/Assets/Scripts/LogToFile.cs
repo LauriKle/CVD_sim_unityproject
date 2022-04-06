@@ -11,7 +11,7 @@ public class LogToFile : MonoBehaviour
 
     void OnEnable()
     {
-        filename += "./DataLogs/" + System.DateTime.Now.ToString("dddd dd MMMM yyyy HH mm ss") + ".txt";     
+        filename += "./DataLogs/" + System.DateTime.Now.ToString("dddd dd MMMM yyyy HH mm ss") + ".csv";     
         startTime = GetTimeInMillis();    
     }
 
