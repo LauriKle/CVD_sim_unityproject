@@ -43,6 +43,8 @@ public class CubeDispenserScript : MonoBehaviour
 
         {0, 0, 0, 0}, // Taka bufferi
         {0, 0, 0, 0},
+        {0, 0, 0, 0},
+        {0, 0, 0, 0},
         {0, 0, 0, 0}
     };
 

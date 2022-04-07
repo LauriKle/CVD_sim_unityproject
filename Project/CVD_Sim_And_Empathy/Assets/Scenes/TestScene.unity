@@ -2717,7 +2717,7 @@ MonoBehaviour:
   belt: {fileID: 2001722753}
   itemDispenser: {fileID: 1398014018}
   mainCamera: {fileID: 448668389}
-  dispenseInterval: 2
+  dispenseInterval: 4
   state: 0
 --- !u!1 &1398014018
 GameObject:
@@ -4474,8 +4474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c432c844c500e45843e3b05a7ecac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scroll: {x: 2.25, y: 0}
-  conveyorSpeed: 80
+  scroll: {x: 0.68, y: 0}
+  conveyorSpeed: 30
   conveyorDirection: {x: 0, y: 0, z: -1}
   itemsToConvey: []
   isRunning: 0
