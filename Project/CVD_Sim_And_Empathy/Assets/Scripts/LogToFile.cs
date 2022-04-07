@@ -12,13 +12,16 @@ public class LogToFile : MonoBehaviour
     void OnEnable()
     {
         filename += "./DataLogs/" + System.DateTime.Now.ToString("dddd dd MMMM yyyy HH mm ss") + ".csv";     
-        startTime = GetTimeInMillis();    
+        startTime = GetTimeInMillis();
+        tw = new StreamWriter(filename, true);
+        tw.WriteLine("Time;Target;Destination;ID");
+        tw.Close();
     }
 
     public void DataLog(string logString)
     {
         tw = new StreamWriter(filename, true);
-        tw.WriteLine((GetTimeInMillis() - startTime).ToString() + "," + logString);
+        tw.WriteLine((GetTimeInMillis() - startTime).ToString() + ';' + logString);
         tw.Close();
     }
 

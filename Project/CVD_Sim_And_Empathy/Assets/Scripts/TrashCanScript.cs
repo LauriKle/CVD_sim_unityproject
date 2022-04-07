@@ -38,6 +38,6 @@ public class TrashCanScript : MonoBehaviour
 
 	private string FormatData()
 	{
-		return nameOther[7].ToString() + "," + correctName[7] + "," + idOther;
+		return nameOther[7].ToString() + ";" + correctName[7] + ";" + idOther;
 	}
 }
