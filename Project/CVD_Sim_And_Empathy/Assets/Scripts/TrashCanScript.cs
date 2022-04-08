@@ -12,9 +12,12 @@ public class TrashCanScript : MonoBehaviour
 	public GameObject correctObject;
 	public GameObject dataLogger;
 
+    public string correctLetter;
 
     private void Start() {
-		correctName = correctObject.name;
+        if (correctObject != null){
+            correctName = correctObject.name;
+        }
 	}
     void OnCollisionEnter(Collision other) {
 
@@ -23,7 +26,11 @@ public class TrashCanScript : MonoBehaviour
 			nameOther = split[0];
 			idOther = split[1];
 
-			if (correctName == nameOther)
+            if (correctObject == null)
+			{
+				scoreboard.GetComponent<ScoreboardScript>().incrementMissed(1);
+			}
+			else if (correctName == nameOther)
 			{
 				scoreboard.GetComponent<ScoreboardScript>().incrementCorrect(1);
 			}
@@ -38,6 +45,6 @@ public class TrashCanScript : MonoBehaviour
 
 	private string FormatData()
 	{
-		return nameOther[7].ToString() + ";" + correctName[7] + ";" + idOther;
+		return nameOther[7].ToString() + ";" + correctLetter + ";" + idOther;
 	}
 }
