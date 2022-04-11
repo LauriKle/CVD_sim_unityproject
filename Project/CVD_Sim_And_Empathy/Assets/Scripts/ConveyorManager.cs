@@ -7,32 +7,26 @@ public class ConveyorManager : MonoBehaviour
     public GameObject belt;
     public GameObject itemDispenser;
     public GameObject mainCamera;
-
     public float dispenseInterval = 2.0f;
-
-    private float timerCount;
-    private bool pressedBefore = false;
-
     public enum States
     {
         IDLE = 0,
         NORMAL = 1,
-        CVD = 2
+        CVD = 2,
+        STOP = 3
     }
-    public States state = States.IDLE;
 
-    void Start()
-    {
-        state = States.IDLE;
-        timerCount = dispenseInterval;      
-    }
-   
+    private States state = States.IDLE;
+    private float timerCount;
+
     void Update()
     {
         switch (state)
         {
             case States.IDLE:
+            case States.STOP:
                 break;
+
             case States.NORMAL:
             case States.CVD:
                 timerCount -= Time.deltaTime;
@@ -41,7 +35,7 @@ public class ConveyorManager : MonoBehaviour
                     timerCount = dispenseInterval;
                     if (itemDispenser.GetComponent<CubeDispenserScript>().dispenseCube())
 					{
-                        nextState();
+                        NextState();
 					}
                 }
                 break;
@@ -49,11 +43,12 @@ public class ConveyorManager : MonoBehaviour
         
     }
 
-    public void nextState()
+    public void NextState()
     {
         switch (state)
         {
             case States.IDLE:
+                timerCount = dispenseInterval;
                 belt.GetComponent<ConveyorScript>().switchOnOrOff();
                 state = States.NORMAL;
                 break;
@@ -63,18 +58,18 @@ public class ConveyorManager : MonoBehaviour
                 break;
             case States.CVD:
                 belt.GetComponent<ConveyorScript>().switchOnOrOff();
-                mainCamera.GetComponent<ColorBlindFilter>().ToggleColors();
-                state = States.IDLE;
+                state = States.STOP;
+                break;
+            case States.STOP:
                 break;
         }
     }
 
-    public void buttonPressed()
+    public void ButtonPressed()
     {
-        if (state == States.IDLE && !pressedBefore)
+        if (state == States.IDLE)
         {
-            pressedBefore = true;
-            nextState();
+            NextState();
         }
 
     }
